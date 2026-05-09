@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+
+from fastapi.middleware.cors import CORSMiddleware
+
 from pydantic import BaseModel
+
 import pandas as pd
+
 import joblib
 
 # Load model and columns
@@ -8,6 +13,20 @@ model = joblib.load("equitylens_model_compressed.pkl")
 feature_columns = joblib.load("feature_columns.pkl")
 
 app = FastAPI()
+
+app.add_middleware(
+
+    CORSMiddleware,
+
+    allow_origins=["*"],
+
+    allow_credentials=True,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"],
+
+)
 
 # Input schema
 class PropertyInput(BaseModel):
