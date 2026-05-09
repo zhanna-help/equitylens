@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 
 # Load model and columns
-model = joblib.load("equitylens_model.pkl")
+model = joblib.load("equitylens_model_compressed.pkl")
 feature_columns = joblib.load("feature_columns.pkl")
 
 app = FastAPI()
